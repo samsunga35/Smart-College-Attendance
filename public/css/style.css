@@ -1,0 +1,494 @@
+/* style.css - Smart College Attendance Portal */
+/* University MIS Traditional Styling (Academic & Clean) */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #222222;
+  background-color: #f4f6f8;
+}
+
+/* -------------------------------------------------------------
+   Header & University Banner
+------------------------------------------------------------- */
+.portal-header {
+  background-color: #0b3c68;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-bottom: 3px solid #f2a900; /* Academic gold accent border */
+}
+
+.portal-header .header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.portal-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.portal-header .sub-title {
+  font-size: 11px;
+  color: #d8e2ec;
+  margin-top: 2px;
+}
+
+.header-user-info {
+  font-size: 12px;
+  color: #e2e8f0;
+  text-align: right;
+}
+
+.header-user-info strong {
+  color: #ffffff;
+}
+
+/* -------------------------------------------------------------
+   Navigation Bar
+------------------------------------------------------------- */
+.portal-nav {
+  background-color: #1e4f7a;
+  border-bottom: 1px solid #163e62;
+}
+
+.portal-nav .nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.portal-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  display: inline-block;
+  border-right: 1px solid #2b5d8a;
+}
+
+.portal-nav a:hover,
+.portal-nav a.active {
+  background-color: #0b3c68;
+  color: #ffffff;
+}
+
+.portal-nav .nav-logout {
+  margin-left: auto;
+  border-right: none;
+  background-color: #8c1d1d;
+  cursor: pointer;
+}
+
+.portal-nav .nav-logout:hover {
+  background-color: #a82323;
+}
+
+/* -------------------------------------------------------------
+   Main Container
+------------------------------------------------------------- */
+.main-container {
+  max-width: 1100px;
+  margin: 15px auto;
+  padding: 0 15px;
+}
+
+/* -------------------------------------------------------------
+   Panels & Boxes (MIS Traditional Style)
+------------------------------------------------------------- */
+.mis-panel {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.mis-panel-header {
+  background-color: #e6edf4;
+  color: #0b3c68;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-bottom: 1px solid #cbd5e1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mis-panel-body {
+  padding: 12px;
+}
+
+/* -------------------------------------------------------------
+   Info Grid (User Profile / Details)
+------------------------------------------------------------- */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.info-table td {
+  padding: 6px 10px;
+  font-size: 13px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.info-table td.label-col {
+  width: 180px;
+  font-weight: 600;
+  color: #334155;
+  background-color: #f8fafc;
+  border-right: 1px solid #e2e8f0;
+}
+
+.info-table td.val-col {
+  color: #0f172a;
+}
+
+/* -------------------------------------------------------------
+   Tables (Standard MIS HTML Table)
+------------------------------------------------------------- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mis-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  border: 1px solid #b0bec5;
+  background-color: #ffffff;
+}
+
+.mis-table th {
+  background-color: #e2ebf3;
+  color: #0b3c68;
+  font-weight: 700;
+  padding: 8px 10px;
+  border: 1px solid #b0bec5;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.mis-table td {
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+}
+
+.mis-table tbody tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+
+.mis-table tbody tr:hover {
+  background-color: #edf2f7;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Status colors */
+.status-present {
+  color: #166534;
+  font-weight: bold;
+}
+
+.status-absent {
+  color: #991b1b;
+  font-weight: bold;
+}
+
+.badge-warning {
+  color: #b45309;
+  font-weight: bold;
+}
+
+/* -------------------------------------------------------------
+   Buttons
+------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  line-height: 1.4;
+  background-color: #1e4f7a;
+  color: #ffffff;
+}
+
+.btn:hover {
+  background-color: #0b3c68;
+}
+
+.btn-secondary {
+  background-color: #475569;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #334155;
+}
+
+.btn-success {
+  background-color: #15803d;
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background-color: #166534;
+}
+
+.btn-danger {
+  background-color: #b91c1c;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #991b1b;
+}
+
+.btn-small {
+  padding: 3px 8px;
+  font-size: 11px;
+}
+
+/* -------------------------------------------------------------
+   Form Inputs & Dropdowns
+------------------------------------------------------------- */
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #1e293b;
+  font-size: 12px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid #94a3b8;
+  border-radius: 2px;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #0b3c68;
+  box-shadow: 0 0 0 1px #0b3c68;
+}
+
+.form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.form-inline .form-group {
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------------
+   Alert & Message Boxes
+------------------------------------------------------------- */
+.alert {
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 12px;
+}
+
+.alert-success {
+  background-color: #dcfce7;
+  border-color: #86efac;
+  color: #14532d;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #7f1d1d;
+}
+
+.alert-warning {
+  background-color: #fef3c7;
+  border-color: #fcd34d;
+  color: #78350f;
+}
+
+.alert-info {
+  background-color: #e0f2fe;
+  border-color: #7dd3fc;
+  color: #0369a1;
+}
+
+/* -------------------------------------------------------------
+   Attendance Predictor Box
+------------------------------------------------------------- */
+.predictor-container {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.predictor-result-box {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.predictor-safe {
+  border-left: 4px solid #16a34a;
+  background-color: #f0fdf4;
+}
+
+.predictor-shortage {
+  border-left: 4px solid #dc2626;
+  background-color: #fef2f2;
+}
+
+/* -------------------------------------------------------------
+   Login Page Specific Styling (Simple University MIS Login)
+------------------------------------------------------------- */
+.login-wrapper {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 0 15px;
+}
+
+.login-card {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.login-card-header {
+  background-color: #0b3c68;
+  color: #ffffff;
+  padding: 14px;
+  text-align: center;
+  border-bottom: 2px solid #f2a900;
+}
+
+.login-card-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.login-card-header p {
+  font-size: 11px;
+  color: #cbd5e1;
+  margin-top: 2px;
+}
+
+.login-card-body {
+  padding: 20px;
+}
+
+.login-card-body .btn {
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.login-hints {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed #cbd5e1;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* -------------------------------------------------------------
+   Attendance Marking Radio Controls
+------------------------------------------------------------- */
+.status-radio-group {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.status-radio-group label {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-radio-group input[type="radio"] {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------
+   Footer
+------------------------------------------------------------- */
+.portal-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 11px;
+  color: #64748b;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 30px;
+  background-color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .portal-header .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header-user-info {
+    text-align: left;
+  }
+  .portal-nav .nav-logout {
+    margin-left: 0;
+  }
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

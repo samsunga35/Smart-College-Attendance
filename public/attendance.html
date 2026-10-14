@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark Attendance - Smart College Attendance Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- University Header -->
+  <header class="portal-header">
+    <div class="header-inner">
+      <div>
+        <h1>Smart College Attendance Portal</h1>
+        <div class="sub-title">Faculty Academic Information System</div>
+      </div>
+      <div class="header-user-info">
+        Teacher: <strong id="header-teacher-name">Loading...</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="portal-nav">
+    <div class="nav-inner">
+      <a href="teacher.html">Home</a>
+      <a href="attendance.html" class="active">Mark Attendance</a>
+      <a href="upload.html">Upload Attendance</a>
+      <a href="history.html">History</a>
+      <a href="javascript:void(0)" id="btn-logout" class="nav-logout">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-container">
+
+    <!-- Subject & Date Selection Panel -->
+    <div class="mis-panel">
+      <div class="mis-panel-header">
+        <span>Attendance Session Selection</span>
+      </div>
+      <div class="mis-panel-body">
+        <div id="selection-alert" class="alert alert-danger" style="display: none;"></div>
+
+        <form id="attendance-select-form">
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="select-subject">Subject:</label>
+              <select id="select-subject" class="form-control" style="min-width: 250px;" required>
+                <option value="">-- Select Subject --</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="select-date">Date:</label>
+              <input type="date" id="select-date" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" id="btn-load-students" class="btn">Load Attendance Sheet</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Duplicate Attendance Alert & Options -->
+        <div id="duplicate-warning-box" class="alert alert-warning" style="display: none; margin-top: 15px;">
+          <p style="font-size: 13px; font-weight: bold; margin-bottom: 6px;">
+            Attendance already exists for this subject and date.
+          </p>
+          <p style="font-size: 12px; margin-bottom: 10px;">
+            Please choose how you wish to proceed:
+          </p>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="btn-duplicate-edit" class="btn btn-small">Edit Existing Records</button>
+            <button type="button" id="btn-duplicate-replace" class="btn btn-small btn-danger">Replace Attendance</button>
+            <button type="button" id="btn-duplicate-cancel" class="btn btn-small btn-secondary">Cancel</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Attendance Sheet Panel -->
+    <div id="attendance-sheet-panel" class="mis-panel" style="display: none;">
+      <div class="mis-panel-header">
+        <span id="sheet-title">Student Attendance Marking</span>
+        <span id="sheet-counts" style="font-size: 12px; font-weight: normal; color: #334155;"></span>
+      </div>
+
+      <div class="mis-panel-body">
+        <!-- Message box for save results -->
+        <div id="save-status-box" class="alert" style="display: none;"></div>
+
+        <!-- Quick Marking Controls -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="btn-mark-all-present" class="btn btn-small btn-success">Mark All Present</button>
+            <button type="button" id="btn-mark-all-absent" class="btn btn-small btn-danger">Mark All Absent</button>
+          </div>
+          <div style="font-size: 12px; color: #475569;">
+            Total Students: <strong id="total-student-count">0</strong>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="mis-table" id="marking-table">
+            <thead>
+              <tr>
+                <th style="width: 140px;">Roll No</th>
+                <th>Student Name</th>
+                <th style="width: 220px;" class="text-center">Attendance Status</th>
+              </tr>
+            </thead>
+            <tbody id="marking-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top: 15px; text-align: right;">
+          <button type="button" id="btn-save-attendance" class="btn" style="padding: 9px 24px; font-size: 13px;">
+            SAVE ATTENDANCE
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="portal-footer">
+    &copy; 2026 Smart College Attendance Portal - Academic Management System
+  </footer>
+
+  <script src="js/attendance.js"></script>
+</body>
+</html>

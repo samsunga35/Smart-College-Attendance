@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Attendance - Smart College Attendance Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- University Header -->
+  <header class="portal-header">
+    <div class="header-inner">
+      <div>
+        <h1>Smart College Attendance Portal</h1>
+        <div class="sub-title">Student Academic Information System</div>
+      </div>
+      <div class="header-user-info">
+        Logged in as: <strong id="header-user-name">Loading...</strong> (<span id="header-roll-no">---</span>)
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="portal-nav">
+    <div class="nav-inner">
+      <a href="student.html" class="active">Home</a>
+      <a href="#attendance-panel">Attendance</a>
+      <a href="history.html">History</a>
+      <a href="javascript:void(0)" id="btn-logout" class="nav-logout">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-container">
+
+    <!-- Student Details Panel -->
+    <div class="mis-panel">
+      <div class="mis-panel-header">
+        <span>Student Personal Information</span>
+      </div>
+      <div class="mis-panel-body">
+        <table class="info-table">
+          <tr>
+            <td class="label-col">Student Name:</td>
+            <td class="val-col" id="student-name">Loading...</td>
+            <td class="label-col">Roll No:</td>
+            <td class="val-col" id="student-roll">Loading...</td>
+          </tr>
+          <tr>
+            <td class="label-col">Institutional Email:</td>
+            <td class="val-col" id="student-email" colspan="3">Loading...</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Attendance Summary Panel -->
+    <div id="attendance-panel" class="mis-panel">
+      <div class="mis-panel-header">
+        <span>Subject-Wise Attendance Summary</span>
+      </div>
+      <div class="mis-panel-body">
+        <div class="table-responsive">
+          <table class="mis-table" id="attendance-table">
+            <thead>
+              <tr>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Faculty</th>
+                <th class="text-center">Present</th>
+                <th class="text-center">Absent</th>
+                <th class="text-center">Total</th>
+                <th class="text-center">Percentage</th>
+                <th class="text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-tbody">
+              <tr>
+                <td colspan="8" class="text-center">Loading attendance records...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attendance Predictor (75% Rule) -->
+    <div class="mis-panel">
+      <div class="mis-panel-header">
+        <span>75% Attendance Predictor</span>
+      </div>
+      <div class="mis-panel-body">
+        <p style="font-size: 12px; color: #475569; margin-bottom: 10px;">
+          Select a subject below to check your eligibility status against the mandatory 75% university attendance requirement.
+        </p>
+
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="predictor-subject-select">Select Subject:</label>
+            <select id="predictor-subject-select" class="form-control" style="min-width: 250px;">
+              <option value="">-- Choose Subject --</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="predictor-output" class="predictor-container" style="display: none;">
+          <div id="predictor-details"></div>
+          <div id="predictor-recommendation" class="predictor-result-box"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="portal-footer">
+    &copy; 2026 Smart College Attendance Portal - Academic Management System
+  </footer>
+
+  <script src="js/student.js"></script>
+</body>
+</html>

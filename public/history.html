@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance History - Smart College Attendance Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- University Header -->
+  <header class="portal-header">
+    <div class="header-inner">
+      <div>
+        <h1>Smart College Attendance Portal</h1>
+        <div class="sub-title">University Academic Management Information System</div>
+      </div>
+      <div class="header-user-info">
+        Logged in as: <strong id="user-display-name">Loading...</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- Student Navigation (Shown if Student) -->
+  <nav id="nav-student" class="portal-nav" style="display: none;">
+    <div class="nav-inner">
+      <a href="student.html">Home</a>
+      <a href="student.html#attendance-panel">Attendance</a>
+      <a href="history.html" class="active">History</a>
+      <a href="javascript:void(0)" class="nav-logout btn-logout-action">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Teacher Navigation (Shown if Teacher) -->
+  <nav id="nav-teacher" class="portal-nav" style="display: none;">
+    <div class="nav-inner">
+      <a href="teacher.html">Home</a>
+      <a href="attendance.html">Mark Attendance</a>
+      <a href="upload.html">Upload Attendance</a>
+      <a href="history.html" class="active">History</a>
+      <a href="javascript:void(0)" class="nav-logout btn-logout-action">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- 1. STUDENT HISTORY SECTION -->
+    <section id="student-section" style="display: none;">
+      <div class="mis-panel">
+        <div class="mis-panel-header">
+          <span>Student Attendance History & Records</span>
+        </div>
+        <div class="mis-panel-body">
+          <!-- Simple Filter Form -->
+          <div class="form-inline" style="margin-bottom: 15px;">
+            <div class="form-group">
+              <label for="history-subject-filter">Filter by Subject:</label>
+              <select id="history-subject-filter" class="form-control" style="min-width: 250px;">
+                <option value="">-- All Subjects --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="history-date-filter">Filter by Date:</label>
+              <input type="date" id="history-date-filter" class="form-control">
+            </div>
+            <div class="form-group">
+              <button type="button" id="btn-reset-history" class="btn btn-secondary">Reset Filter</button>
+            </div>
+          </div>
+
+          <!-- Attendance Stats Summary -->
+          <div id="history-stats" class="alert alert-info" style="display: none;"></div>
+
+          <!-- History Table -->
+          <div class="table-responsive">
+            <table class="mis-table">
+              <thead>
+                <tr>
+                  <th style="width: 140px;">Date</th>
+                  <th style="width: 120px;">Subject Code</th>
+                  <th>Subject Name</th>
+                  <th class="text-center" style="width: 120px;">Status</th>
+                </tr>
+              </thead>
+              <tbody id="student-history-tbody">
+                <tr>
+                  <td colspan="4" class="text-center">Loading history...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TEACHER HISTORY SECTION -->
+    <section id="teacher-section" style="display: none;">
+      <div class="mis-panel">
+        <div class="mis-panel-header">
+          <span>Faculty Classroom Sessions History</span>
+        </div>
+        <div class="mis-panel-body">
+          <!-- Simple Filter Form -->
+          <div class="form-inline" style="margin-bottom: 15px;">
+            <div class="form-group">
+              <label for="teacher-history-subject-filter">Filter by Subject:</label>
+              <select id="teacher-history-subject-filter" class="form-control" style="min-width: 250px;">
+                <option value="">-- All Assigned Subjects --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="teacher-history-date-filter">Filter by Date:</label>
+              <input type="date" id="teacher-history-date-filter" class="form-control">
+            </div>
+            <div class="form-group">
+              <button type="button" id="btn-reset-teacher-history" class="btn btn-secondary">Reset Filter</button>
+            </div>
+          </div>
+
+          <!-- Teacher Sessions Stats Summary -->
+          <div id="teacher-history-stats" class="alert alert-info" style="display: none;"></div>
+
+          <!-- Sessions Table -->
+          <div class="table-responsive">
+            <table class="mis-table">
+              <thead>
+                <tr>
+                  <th style="width: 130px;">Date</th>
+                  <th style="width: 110px;">Subject Code</th>
+                  <th>Subject Name</th>
+                  <th class="text-center" style="width: 100px;">Present</th>
+                  <th class="text-center" style="width: 100px;">Absent</th>
+                  <th class="text-center" style="width: 100px;">Total</th>
+                  <th class="text-center" style="width: 120px;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="teacher-history-tbody">
+                <tr>
+                  <td colspan="7" class="text-center">Loading sessions...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="portal-footer">
+    &copy; 2026 Smart College Attendance Portal - Academic Management System
+  </footer>
+
+  <script>
+    // Role Dispatcher & History Loader
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await fetch('/api/me');
+        const auth = await res.json();
+
+        if (!auth.loggedIn || !auth.user) {
+          window.location.href = 'index.html';
+          return;
+        }
+
+        const userDisplay = document.getElementById('user-display-name');
+        if (userDisplay) {
+          userDisplay.textContent = auth.user.name + (auth.user.roll_no ? ` (${auth.user.roll_no})` : '');
+        }
+
+        // Setup Logout buttons
+        document.querySelectorAll('.btn-logout-action').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            await fetch('/api/logout', { method: 'POST' });
+            window.location.href = 'index.html';
+          });
+        });
+
+        if (auth.user.role === 'student') {
+          document.getElementById('nav-student').style.display = 'block';
+          document.getElementById('student-section').style.display = 'block';
+          const script = document.createElement('script');
+          script.src = 'js/student.js';
+          script.onerror = (e) => {
+            console.error('Failed to load student.js:', e);
+            const tbody = document.getElementById('student-history-tbody');
+            if (tbody) tbody.innerHTML = '<tr><td colspan="4" class="text-center">Unable to load attendance history.</td></tr>';
+          };
+          document.body.appendChild(script);
+        } else if (auth.user.role === 'teacher') {
+          document.getElementById('nav-teacher').style.display = 'block';
+          document.getElementById('teacher-section').style.display = 'block';
+          const script = document.createElement('script');
+          script.src = 'js/teacher.js';
+          script.onerror = (e) => {
+            console.error('Failed to load teacher.js:', e);
+            const tbody = document.getElementById('teacher-history-tbody');
+            if (tbody) tbody.innerHTML = '<tr><td colspan="7" class="text-center">Unable to load attendance history.</td></tr>';
+          };
+          document.body.appendChild(script);
+        }
+      } catch (err) {
+        console.error('Authentication verification error:', err);
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>

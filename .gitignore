@@ -1,0 +1,11 @@
+# Node.js dependencies
+node_modules/
+
+# Uploaded Excel/files
+uploads/
+
+# Environment variables and secrets
+.env
+
+# Log files
+*.log
