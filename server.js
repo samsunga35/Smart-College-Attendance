@@ -11,6 +11,52 @@ const PORT = process.env.PORT || 3000;
 // Enable trust proxy for cloud deployment (Render, Railway, etc.)
 app.set('trust proxy', 1);
 
+// -------------------------------------------------------------
+// SEO & Redirection Middlewares (Sitechecker Optimizations)
+// -------------------------------------------------------------
+
+// 1. Redirect WWW to non-WWW (301 Permanent Redirect)
+app.use((req, res, next) => {
+  const host = req.headers.host || '';
+  if (host.startsWith('www.')) {
+    const nonWwwHost = host.slice(4);
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+    return res.redirect(301, `${protocol}://${nonWwwHost}${req.originalUrl}`);
+  }
+  next();
+});
+
+// 2. Redirect Trailing Slash to non-trailing slash (301 Permanent Redirect)
+app.use((req, res, next) => {
+  if (req.path.length > 1 && req.path.endsWith('/')) {
+    const query = req.url.slice(req.path.length);
+    const cleanPath = req.path.slice(0, -1);
+    return res.redirect(301, cleanPath + query);
+  }
+  next();
+});
+
+// 3. Redirect /index.html and /index.php to root / (301 Permanent Redirect)
+app.use((req, res, next) => {
+  const cleanPath = req.path.toLowerCase();
+  if (cleanPath === '/index.html' || cleanPath === '/index.php' || cleanPath === '/index') {
+    const query = req.url.slice(req.path.length);
+    return res.redirect(301, '/' + query);
+  }
+  next();
+});
+
+// 4. Robots.txt and Sitemap.xml explicit handlers
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send("User-agent: *\nAllow: /\n\nSitemap: https://smart-college-attendance.onrender.com/sitemap.xml\n");
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+  res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
+
 // Core Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

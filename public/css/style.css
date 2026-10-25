@@ -463,6 +463,61 @@ body {
 }
 
 /* -------------------------------------------------------------
+   Homepage Educational Information & Guidelines
+------------------------------------------------------------- */
+.portal-info-wrapper {
+  max-width: 800px;
+  margin: 25px auto;
+}
+
+.portal-info-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.portal-intro-para {
+  margin-bottom: 15px;
+}
+
+.portal-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.portal-feature-item {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #0b3c68;
+  padding: 12px;
+  border-radius: 2px;
+}
+
+.portal-feature-item h4 {
+  color: #0b3c68;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.portal-feature-item p {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.portal-support-note {
+  margin-top: 15px;
+  padding: 10px 12px;
+  background-color: #fffbeb;
+  border-left: 3px solid #f59e0b;
+  font-size: 12px;
+  color: #92400e;
+}
+
+/* -------------------------------------------------------------
    Footer
 ------------------------------------------------------------- */
 .portal-footer {

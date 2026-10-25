@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smart-college-attendance.onrender.com/sitemap.xml
