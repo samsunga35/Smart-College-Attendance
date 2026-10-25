@@ -74,7 +74,6 @@ async function initTeacher() {
           <td>${sub.subject_name}</td>
           <td class="text-center">
             <a href="attendance.html?subject_id=${sub.subject_id}" class="btn btn-small">Mark / Edit</a>
-            <a href="upload.html?subject_id=${sub.subject_id}" class="btn btn-small btn-secondary">Upload Excel</a>
             <a href="history.html?subject_id=${sub.subject_id}" class="btn btn-small btn-secondary">History</a>
           </td>
         `;
